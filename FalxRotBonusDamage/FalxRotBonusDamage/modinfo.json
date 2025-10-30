@@ -6,7 +6,7 @@
     "authors": [
         "Unknown"
     ],
-    "description": "To be added",
+    "description": "Adds configurable bonus damage for falx blades against rust-creature entities.",
     "version": "1.0.0",
     "dependencies": {
         "game": "1.21.0"
