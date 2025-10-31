@@ -2,7 +2,7 @@ namespace FalxRotBonusDamage
 {
     public class FalxRotBonusDamageConfig
     {
-        public float RustCreatureDamageMultiplier { get; set; } = 1.25f;
+        public float RustCreatureDamageMultiplier { get; set; } = 1.5f;
 
         public FalxRotBonusDamageConfig EnsureValid()
         {

@@ -4,7 +4,7 @@
     "modid": "falxrotbonusdamage",
     "name": "Falx Rot Bonus Damage",
     "authors": [
-        "AI Assistant"
+        "Loire Lab"
     ],
     "description": "Adds a configurable damage bonus for falx blade variants when striking rust-creature tagged entities.",
     "version": "1.0.0",
