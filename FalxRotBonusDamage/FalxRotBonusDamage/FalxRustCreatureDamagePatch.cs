@@ -39,15 +39,15 @@ namespace FalxRotBonusDamage
                 return;
             }
 
-            var originalDamage = damage;
             damage *= multiplier;
 
-            var bonusDamage = damage - originalDamage;
-            FalxRotBonusDamageModSystem.Logger?.Notification(
-                "Falx rust-creature bonus applied: base={0:0.##}, bonus={1:0.##}, total={2:0.##}",
-                originalDamage,
-                bonusDamage,
-                damage);
+            /*   var originalDamage = damage / multiplier;
+               var bonusDamage = damage - originalDamage;
+               FalxRotBonusDamageModSystem.Logger?.Notification(
+                   "Falx rust-creature bonus applied: base={0:0.##}, bonus={1:0.##}, total={2:0.##}",
+                   originalDamage,
+                   bonusDamage,
+                   damage);*/
         }
 
         private static bool TryGetFalxWeapon(EntityAgent attacker, out ItemStack? falxStack)
@@ -57,13 +57,6 @@ namespace FalxRotBonusDamage
             {
                 return true;
             }
-
-            falxStack = attacker.LeftHandItemSlot?.Itemstack;
-            if (IsFalxBlade(falxStack))
-            {
-                return true;
-            }
-
             falxStack = null;
             return false;
         }
