@@ -1,29 +1,55 @@
-﻿using Vintagestory.API.Client;
+using HarmonyLib;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
-using Vintagestory.API.Server;
 
 namespace FalxRotBonusDamage
 {
     public class FalxRotBonusDamageModSystem : ModSystem
     {
+        private static readonly object PatchLock = new();
+        private static bool patched;
 
-        // Called on server and client
-        // Useful for registering block/entity classes on both sides
+        internal static FalxRotBonusDamageConfig Config { get; private set; } = new();
+
         public override void Start(ICoreAPI api)
         {
-            Mod.Logger.Notification("Hello from template mod: " + api.Side);
+            base.Start(api);
+
+            LoadConfig(api);
+            EnsurePatched();
         }
 
-        public override void StartServerSide(ICoreServerAPI api)
+        private void LoadConfig(ICoreAPI api)
         {
-            Mod.Logger.Notification("Hello from template mod server side: " + Lang.Get("falxrotbonusdamage:hello"));
+            var loaded = api.LoadModConfig<FalxRotBonusDamageConfig>("FalxRotBonusDamage.json");
+
+            if (loaded == null)
+            {
+                loaded = new FalxRotBonusDamageConfig();
+
+                if (api.Side == EnumAppSide.Server)
+                {
+                    api.StoreModConfig(loaded, "FalxRotBonusDamage.json");
+                }
+            }
+
+            Config = loaded.EnsureValid();
         }
 
-        public override void StartClientSide(ICoreClientAPI api)
+        private void EnsurePatched()
         {
-            Mod.Logger.Notification("Hello from template mod client side: " + Lang.Get("falxrotbonusdamage:hello"));
-        }
+            if (patched) return;
 
+            lock (PatchLock)
+            {
+                if (patched) return;
+
+                var harmony = new Harmony("falxrotbonusdamage.bonuses");
+                harmony.PatchAll();
+
+                patched = true;
+
+                Mod.Logger.Event("Falx rot bonus damage patch active. Multiplier={0}", Config.RustCreatureDamageMultiplier);
+            }
+        }
     }
 }
