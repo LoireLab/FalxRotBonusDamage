@@ -22,8 +22,9 @@ namespace FalxRotBonusDamage
             {
                 return;
             }
-
-            var formattedMultiplier = multiplier.ToString("0.##", GlobalConstants.DefaultCultureInfo);
+            multiplier -= 1;
+            multiplier *= 100;
+            var formattedMultiplier = multiplier.ToString("0", GlobalConstants.DefaultCultureInfo);
             var description = Lang.Get("falxrotbonusdamage:iteminfo-falxrustmultiplier", formattedMultiplier);
 
             if (dsc.Length > 0 && dsc[dsc.Length - 1] != '\n')
