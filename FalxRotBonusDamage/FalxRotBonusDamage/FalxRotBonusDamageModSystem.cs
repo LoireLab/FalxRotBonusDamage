@@ -18,6 +18,7 @@ namespace FalxRotBonusDamage
             Logger = api.Logger;
             LoadConfig(api);
             EnsurePatched();
+            CombatOverhaulCompat.TryRegister(api);
         }
 
         private void LoadConfig(ICoreAPI api)
