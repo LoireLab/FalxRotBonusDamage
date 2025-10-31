@@ -6,9 +6,10 @@
     "authors": [
         "Loire Lab"
     ],
-    "description": "Adds a configurable damage bonus for falx blade variants when striking rust-creature tagged entities.",
-    "version": "1.0.0",
+    "description": "Combat Overhaul version: Adds a configurable damage bonus for falx blade variants when striking rust-creature tagged entities.",
+    "version": "1.0.1",
     "dependencies": {
-        "game": "1.21.0"
+        "game": "1.21.0",
+         "overhaullib": ""
     }
 }

@@ -47,14 +47,6 @@ namespace FalxRotBonusDamage
             }
 
             damage *= multiplier;
-
-            /*   var originalDamage = damage / multiplier;
-               var bonusDamage = damage - originalDamage;
-               FalxRotBonusDamageModSystem.Logger?.Notification(
-                   "Falx rust-creature bonus applied: base={0:0.##}, bonus={1:0.##}, total={2:0.##}",
-                   originalDamage,
-                   bonusDamage,
-                   damage);*/
         }
 
     }
