@@ -2,11 +2,11 @@
     "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
     "type": "Code",
     "modid": "falxrotbonusdamage",
-    "name": "FalxRotBonusDamage",
+    "name": "Falx Rot Bonus Damage",
     "authors": [
-        "Unknown"
+        "AI Assistant"
     ],
-    "description": "To be added",
+    "description": "Adds a configurable damage bonus for falx blade variants when striking rust-creature tagged entities.",
     "version": "1.0.0",
     "dependencies": {
         "game": "1.21.0"
