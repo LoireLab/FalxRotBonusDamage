@@ -8,10 +8,17 @@ namespace FalxRotBonusDamage
     [HarmonyPatchCategory("falxrotbonusdamage")]
     internal static class FalxRustCreatureDamagePatch
     {
+        internal static bool UseVanillaDamagePatch { get; set; } = true;
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(EntityBehaviorHealth), "OnEntityReceiveDamage")]
         private static void ApplyFalxBonusDamage(EntityBehaviorHealth __instance, DamageSource damageSource, ref float damage)
         {
+            if (!UseVanillaDamagePatch)
+            {
+                return;
+            }
+
             if (damage <= 0f || damageSource == null)
             {
                 return;
@@ -28,7 +35,7 @@ namespace FalxRotBonusDamage
                 return;
             }
 
-            if (!TryGetFalxWeapon(attacker, out _))
+            if (!FalxWeaponHelper.TryGetFalxWeapon(attacker, out _))
             {
                 return;
             }
@@ -50,26 +57,5 @@ namespace FalxRotBonusDamage
                    damage);*/
         }
 
-        private static bool TryGetFalxWeapon(EntityAgent attacker, out ItemStack? falxStack)
-        {
-            falxStack = attacker.ActiveHandItemSlot?.Itemstack;
-            if (IsFalxBlade(falxStack))
-            {
-                return true;
-            }
-            falxStack = null;
-            return false;
-        }
-
-        private static bool IsFalxBlade(ItemStack? stack)
-        {
-            var collectible = stack?.Collectible;
-            if (collectible?.Code == null)
-            {
-                return false;
-            }
-
-            return collectible.Code.Path.StartsWith("blade-falx-");
-        }
     }
 }
