@@ -9,11 +9,13 @@ namespace FalxRotBonusDamage
         private static bool patched;
 
         internal static FalxRotBonusDamageConfig Config { get; private set; } = new();
+        internal static ILogger? Logger { get; private set; }
 
         public override void Start(ICoreAPI api)
         {
             base.Start(api);
 
+            Logger = api.Logger;
             LoadConfig(api);
             EnsurePatched();
         }
