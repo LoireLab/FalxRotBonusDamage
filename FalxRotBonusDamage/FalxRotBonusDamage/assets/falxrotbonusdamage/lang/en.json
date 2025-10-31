@@ -1,3 +1,4 @@
 {
-    "falxrotbonusdamage:config-rust-multiplier": "Rust-creature damage multiplier: {0}"
+    "falxrotbonusdamage:config-rust-multiplier": "Rust-creature damage multiplier: {0}",
+    "falxrotbonusdamage:iteminfo-falxrustmultiplier": "<font color=\"#99c9f9\">Deals {0}× damage to rust creatures.</font>"
 }

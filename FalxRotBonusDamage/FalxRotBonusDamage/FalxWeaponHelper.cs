@@ -17,7 +17,7 @@ namespace FalxRotBonusDamage
             return false;
         }
 
-        private static bool IsFalxBlade(ItemStack? stack)
+        internal static bool IsFalxBlade(ItemStack? stack)
         {
             var collectible = stack?.Collectible;
             if (collectible?.Code == null)
